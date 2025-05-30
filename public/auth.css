@@ -1,0 +1,43 @@
+:root{
+    --background: black;
+    --main-block: #A2D2FF;
+    --text: white;
+}
+body{
+    background-color: var(--background);
+}
+.mainBlock{
+    margin: auto;
+    margin-top: 10vh;
+    width: 20%;
+    height: 50vh;
+    background-color: var(--main-block);
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 10px;
+}
+.mainBlock > * {
+    margin-bottom: 10px;
+    border-radius: 10px;
+    border: none;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    transition: background-color 0.4s ease;
+}
+.sendBtn{
+    padding: 10px;
+    margin-top: 10px;
+    transition: background-color 0.4s ease;
+    cursor: pointer;
+}
+.sendBtn:hover{
+    background-color: #bfd0df;;
+}
+.mainBlock > input:focus{
+    border: none;
+    background-color: #bfd0df;
+}
+.link{
+    text-decoration: none;
+}

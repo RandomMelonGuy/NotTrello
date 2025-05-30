@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwayProject</title> 
+    <link rel="stylesheet" href="newStyles.css">
+    <link rel="stylesheet" href="nav.css">
+    <link rel="icon" href="interrogation.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+<a href="/" class="logo-link">
+  <img id="logo" alt="RunwayProject" src="logo.png">
+</a>
+<nav>
+  <ul>
+    <li><a href="/">• Главная</a></li>
+    <li><a href="/search">Поиск</a></li>
+    <li><a href="/myprojects">Мои проекты</a></li>
+  </ul>
+</nav>
+        {{#if autorized }} 
+        <div class="userBox">{{user.username}}</div>
+        <a href="/logout"><img id="logout" alt="log out" src="logout.png"></a>
+        {{else}}
+        <a href="/register" class="moveBtn">Регистрация</a>
+        <a href="/auth" class="moveBtn">Войти</a>
+        {{/if }}
+    </header>
+    
+    <div class="descr">
+        <main>
+            <section>
+                <h1>RunwayProject</h1>
+                <img src="proj1.jpg" id="proj1" alt="">
+                <p>Создавайте свои ПРОЕКТЫ</p>
+                <a href='/create-project'><button>Попробовать</button></a>
+            </section>
+            <section class="proj2">
+                <img src="https://static.tildacdn.com/tild6166-3033-4935-b337-346563303534/photo.svg" id="proj2" alt="">
+                <p>Редактируйте свои Идеи</p>
+                <a href='/myprojects'><button>Попробовать</button></a>
+            </section>
+        </main>
+    </div>
+
+    <footer>
+        <hr>
+        <p>© RunwayProject 2025 by Рудиронщики</p>
+        <p>runwayproject.suppor@gmail.com</p>
+        <img src="globe.png" id="language" alt="language"> <p class="rus">русский</p>
+    </footer>
+</body>
+</html>
+

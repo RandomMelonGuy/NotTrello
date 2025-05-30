@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="newRegistration.css">
+</head>
+<body>
+    <div class="mainBlock">
+        <h2>Создать аккаунт</h2>
+        <label for="username">Имя пользователя</label>
+        <input id="username" type="text" maxlength="30" placeholder="Придумайте логин">
+        <div id="username-error" class="error-message">Имя пользователя должно содержать от 3 до 30 символов</div>
+        
+        <label for="email">Электронная почта</label>
+        <input id="email" type="email" maxlength="40" placeholder="example@mail.com">
+        <div id="email-error" class="error-message">Введите корректный email</div>
+        
+        <label for="password">Пароль</label>
+        <input id="password" type="password" maxlength="40" placeholder="Не менее 6 символов">
+        <div class="password-strength">
+            <div id="strength-bar" class="strength-bar"></div>
+        </div>
+        <div id="password-error" class="error-message">Пароль должен содержать не менее 6 символов</div>
+        
+        <label for="passwordAgain">Подтвердите пароль</label>
+        <input id="passwordAgain" type="password" maxlength="40" placeholder="Повторите пароль">
+        <div id="password-match-error" class="error-message">Пароли не совпадают</div>
+        
+        <button onclick="sendData()" class="sendBtn">Зарегистрироваться</button>
+        
+        <div id="success-message" class="success-message">Регистрация прошла успешно!</div>
+        
+        <div class="login-link">
+            Уже есть аккаунт? <a href="/auth">Войти</a>
+        </div>
+    </div>
+
+    <script>
+        const usernameInput = document.getElementById("username");
+        const passwordInput = document.getElementById("password");
+        const passwordAgainInput = document.getElementById("passwordAgain");
+        const emailInput = document.getElementById("email");
+        const strengthBar = document.getElementById("strength-bar");
+        
+        // Элементы для отображения ошибок
+        const usernameError = document.getElementById("username-error");
+        const emailError = document.getElementById("email-error");
+        const passwordError = document.getElementById("password-error");
+        const passwordMatchError = document.getElementById("password-match-error");
+        const successMessage = document.getElementById("success-message");
+        
+        // Проверка сложности пароля
+        passwordInput.addEventListener('input', function() {
+            const strength = calculatePasswordStrength(this.value);
+            updateStrengthBar(strength);
+        });
+        
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            
+            if (password.length > 0) strength += 20;
+            if (password.length >= 6) strength += 20;
+            if (password.length >= 8) strength += 20;
+            if (/[A-Z]/.test(password)) strength += 20;
+            if (/[0-9]/.test(password)) strength += 10;
+            if (/[^A-Za-z0-9]/.test(password)) strength += 10;
+            
+            return Math.min(strength, 100);
+        }
+        
+        function updateStrengthBar(strength) {
+            strengthBar.style.width = strength + '%';
+            
+            if (strength < 40) {
+                strengthBar.style.backgroundColor = '#e74c3c';
+            } else if (strength < 70) {
+                strengthBar.style.backgroundColor = '#f39c12';
+            } else {
+                strengthBar.style.backgroundColor = '#2ecc71';
+            }
+        }
+        
+        // Валидация формы
+        function validateForm() {
+            let isValid = true;
+            
+            // Валидация имени пользователя
+            if (usernameInput.value.length < 3 || usernameInput.value.length > 30) {
+                usernameError.style.display = 'block';
+                isValid = false;
+            } else {
+                usernameError.style.display = 'none';
+            }
+            
+            // Валидация email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(emailInput.value)) {
+                emailError.style.display = 'block';
+                isValid = false;
+            } else {
+                emailError.style.display = 'none';
+            }
+            
+            // Валидация пароля
+            if (passwordInput.value.length < 6) {
+                passwordError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordError.style.display = 'none';
+            }
+            
+            // Проверка совпадения паролей
+            if (passwordInput.value !== passwordAgainInput.value) {
+                passwordMatchError.style.display = 'block';
+                isValid = false;
+            } else {
+                passwordMatchError.style.display = 'none';
+            }
+            
+            return isValid;
+        }
+        
+        async function sendData() {
+            if (!validateForm()) return;
+            
+            const userData = {
+                username: usernameInput.value,
+                password: passwordInput.value,
+                email: emailInput.value
+            };
+            
+            try {
+                const response = await fetch("/register", {
+                    method: "POST",
+                    body: JSON.stringify(userData)
+                });
+                
+                const data = await response.json();
+                
+                if (response.ok) {
+                    // Успешная регистрация
+                    successMessage.style.display = 'block';
+                    successMessage.textContent = "Регистрация прошла успешно!";
+                    
+                    // Очистка формы
+                    usernameInput.value = '';
+                    emailInput.value = '';
+                    passwordInput.value = '';
+                    passwordAgainInput.value = '';
+                    strengthBar.style.width = '0';
+                    
+                    // Перенаправление через 2 секунды
+                    setTimeout(() => {
+                        window.location.href = '/auth';
+                    }, 2000);
+                } else {
+                    // Обработка ошибок сервера
+                    if (data === "23505" || data.code === "23505") {
+                        alert("Пользователь с таким именем или email уже существует");
+                    } else {
+                        alert("Произошла ошибка при регистрации. Пожалуйста, попробуйте позже.");
+                    }
+                }
+            } catch (error) {
+                console.error("Ошибка:", error);
+                alert("Произошла ошибка при отправке данных. Проверьте подключение к интернету.");
+            }
+        }
+        
+        // Отправка формы по нажатию Enter
+        document.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendData();
+            }
+        });
+    </script>
+</body>
+</html>

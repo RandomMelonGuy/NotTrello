@@ -1,0 +1,85 @@
+/* auth.css - Стили для страницы авторизации */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #003366;
+}
+
+.mainBlock {
+    background-color: #e6f7ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(70, 130, 180, 0.2);
+    padding: 30px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+}
+
+h2 {
+    color: #1e3d6b;
+    margin-bottom: 25px;
+    font-size: 1.8em;
+}
+
+label {
+    display: block;
+    text-align: left;
+    margin: 15px 0 5px;
+    color: #4682b4;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #a8d0e6;
+    border-radius: 6px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #f8fcff;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #5f9ea0;
+    box-shadow: 0 0 0 2px rgba(95, 158, 160, 0.2);
+}
+
+.sendBtn {
+    background-color: #5f9ea0;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: background-color 0.3s;
+}
+
+.sendBtn:hover {
+    background-color: #4682b4;
+}
+
+.link {
+    display: inline-block;
+    margin-top: 15px;
+    color: #5f9ea0;
+    text-decoration: none;
+    font-size: 0.9em;
+    transition: color 0.3s;
+}
+
+.link:hover {
+    color: #1e3d6b;
+    text-decoration: underline;
+}

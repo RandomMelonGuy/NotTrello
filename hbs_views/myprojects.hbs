@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwayProject</title> 
+    <link rel="stylesheet" href="nav.css">
+    <link rel="stylesheet" href="newStyles.css">
+    <link rel="stylesheet" href="newProjects.css">
+    <link rel="icon" href="interrogation.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+<a href="/" class="logo-link">
+  <img id="logo" alt="RunwayProject" src="logo.png">
+</a>
+<nav>
+  <ul>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/search">Поиск</a></li>
+    <li><a href="/myprojects">• Мои проекты</a></li>
+  </ul>
+</nav>
+        {{#if autorized }} 
+        <div class="userBox">{{user.username}}</div>
+        <a href="/logout"><img id="logout" alt="log out" src="logout.png"></a>
+        {{else}}
+        <a href="/register" class="moveBtn">Регистрация</a>
+        <a href="/auth" class="moveBtn">Войти</a>
+        {{/if }}
+    </header>
+    <main>
+        {{#if autorized}}
+        <section><a href="/create-project" ><h3>Создать проект </h3></a>
+        <h1>{{ projects.123.name }}</h1>
+        <h2>Мои проекты:</h2>
+        {{#each projects }}
+            <div class="project" onclick="openProject('{{name}}', '{{../user.username}}')">
+                <p class="name" id="name">Имя: {{ name }}</p>
+                <div class="date">Был создан: {{ date }}</div>
+            </div>
+        {{/each}}
+        </section>
+        {{else}}
+        <h1 class="announcment">У Вас нет проектов. Авторизуйтесь.</h1>
+        {{/if}}
+    </main>
+    <script>
+        const openProject = (project, user) => {
+            window.location.href = `/projects/edit/${user}/${project}`;
+        }
+    </script>
+</body>
+</html>

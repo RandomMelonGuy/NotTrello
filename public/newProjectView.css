@@ -1,0 +1,255 @@
+/* newStyles.css - Стили для страницы редактирования проекта */
+
+/* Основные стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f8ff;
+    color: #003366;
+    line-height: 1.6;
+}
+
+/* Шапка */
+header {
+    background-color: #4682b4;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    height: 40px;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+nav li {
+    margin: 0 15px;
+}
+
+nav a {
+    color: #e6f2ff;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+nav a:hover {
+    color: #ffffff;
+}
+
+/* Кнопки авторизации */
+.moveBtn {
+    background-color: #5f9ea0;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-decoration: none;
+    margin-left: 10px;
+    transition: all 0.3s;
+}
+
+.moveBtn:hover {
+    background-color: #4682b4;
+    transform: translateY(-1px);
+}
+
+/* Иконки пользователя */
+#notifications, #logout {
+    height: 24px;
+    margin-left: 15px;
+    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(93deg) brightness(103%) contrast(103%);
+    transition: transform 0.3s;
+}
+
+#notifications:hover, #logout:hover {
+    transform: scale(1.1);
+}
+
+.userBox {
+    color: #e6f2ff;
+    font-weight: bold;
+    margin-right: 10px;
+}
+
+/* Основной блок контента */
+.mainBlock {
+    padding: 30px;
+    max-width: 1200px;
+    margin: 30px auto;
+    background-color: #e6f7ff;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(70, 130, 180, 0.1);
+}
+
+/* Навигация по этапам */
+.listPages {
+    display: flex;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #a8d0e6;
+    padding-bottom: 10px;
+}
+
+.page {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    margin-right: 10px;
+    cursor: pointer;
+    color: #5f9ea0;
+    font-weight: 500;
+    border-radius: 5px;
+    transition: all 0.3s;
+}
+
+.page:hover {
+    background-color: #d4eefd;
+    color: #4682b4;
+}
+
+.page.current {
+    background-color: #5f9ea0;
+    color: white;
+}
+
+/* Кнопки */
+.cardCreate, .saveBtn {
+    background-color: #5f9ea0;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-bottom: 20px;
+    transition: all 0.3s;
+}
+
+.cardCreate:hover, .saveBtn:hover {
+    background-color: #4682b4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(70, 130, 180, 0.2);
+}
+
+.cardCreate:active, .saveBtn:active {
+    transform: translateY(0);
+}
+
+/* Блок комментариев */
+.commentBlock {
+    max-width: 1200px;
+    margin: 0 auto 40px;
+    padding: 0 30px;
+}
+
+.send {
+    background-color: #e6f7ff;
+    padding: 20px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.send p {
+    margin-top: 0;
+    color: #4682b4;
+    font-weight: 500;
+}
+
+textarea {
+    width: 100%;
+    min-height: 100px;
+    padding: 12px;
+    border: 1px solid #a8d0e6;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    font-family: inherit;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.sendBtn {
+    background-color: #5f9ea0;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.sendBtn:hover {
+    background-color: #4682b4;
+}
+
+.hr {
+    border: 0;
+    height: 1px;
+    background-color: #a8d0e6;
+    margin: 25px 0;
+}
+
+.comment {
+    background-color: #f0f8ff;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.sender {
+    color: #5f9ea0;
+    margin: 0 0 8px 0;
+    font-size: 0.9em;
+}
+
+.context {
+    margin: 0;
+    color: #003366;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+    
+    nav ul {
+        margin: 15px 0;
+    }
+    
+    .mainBlock, .commentBlock {
+        padding: 20px;
+    }
+    
+    .listPages {
+        flex-wrap: wrap;
+    }
+    
+    .page {
+        margin-bottom: 5px;
+    }
+}
+/*  Всякие приколы говнокода  */
+.inactive{
+    display: none !important;
+}
+.card-hr{
+   border-color: #4682b4;
+}
+.card-p{
+    font-weight: bold;
+}

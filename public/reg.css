@@ -1,0 +1,116 @@
+body{
+    background-color: black;
+}
+header {
+    width: 100%;
+    height: 50px;
+    background-color:  #A2D2FF;
+    align-items: center;
+    top: 0;
+    border-radius: 10px;
+    box-shadow: 0 8px 20px 0 #6187ab, 0 8px 20px 0 #6187ab;
+}
+img {
+    font-size:1.9rem;
+    text-align: center;
+    font-family: Tahoma;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 #6187ab, 0 6px 20px 0 #6187ab;
+    max-width: 200px;
+    max-height: 50px;
+    background-color: aliceblue;
+}
+
+h1 {
+    font-size:1.9rem;
+    text-align: center;
+    font-family: Tahoma;
+    color: #6187ab;
+    background-color: aliceblue;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 #6187ab, 0 6px 20px 0 #6187ab;
+}
+button {
+    display: block;
+    width: 10%;
+    padding: 1px;
+    font-size: 1.4rem;
+    background: #6187ab;
+    border: 3px solid #A2D2FF;
+    box-shadow: 0 8px 20px 0 rgba(0,0,0,0.2), 0 8px 20px 0 rgba(0,0,0,0.2);
+    border-radius: 15px;
+    color: white;
+    font-family: Verdana, Tahoma;
+    height: 40px
+}
+.moveBtn{
+    display: block;
+    width: 10%;
+    padding: 1px;
+    font-size: 1.4rem;
+    background: #6187ab;
+    border: 3px solid #A2D2FF;
+    box-shadow: 0 8px 20px 0 rgba(0,0,0,0.2), 0 8px 20px 0 rgba(0,0,0,0.2);
+    border-radius: 15px;
+    color: white;
+    font-family: Verdana, Tahoma;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+}
+nav {
+    width: 50%;
+    max-width: 800px;
+    height: 40px;
+    color: #A2D2FF;
+    margin: 0 2rem;
+    padding: 0.2rem;
+    display: block;
+    background-color: aliceblue;
+    border-radius: 10px;
+    font-family: Verdana, Tahoma;
+  }
+  
+  nav > ul {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    align-items: center;
+    padding-inline-start: 0;
+    margin-block: 0;
+    height: 100%;
+    width: 100%;
+    font-size:1.6rem;
+    color: #6187ab;
+  }
+  
+  nav > ul > li {
+    color: #A2D2FF;
+    margin: 0 0.2rem;
+    padding: 0.2rem;
+    display: block;
+    background-color: aliceblue;
+    border-radius: 10px;
+
+  }
+  
+  nav > ul > li:hover {
+    background-color:black;
+    color: #1b1b32;
+    cursor: pointer;
+  }
+a {
+    color: #6187ab;    
+}
+
+main {
+    padding-top: 20px;
+
+}
+section {
+    background-color: #A2D2FF;;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px 0 #6187ab, 0 6px 20px 0 #6187ab;
+    width: 100%;
+    height: 50%;
+}

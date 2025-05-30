@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwayProject</title> 
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <a href="/" class="logo-link">
+            <img id="logo" alt="RunwayProject" src="logo.png">
+        </a>
+        
+        <nav>
+            <ul>
+                <li><a href="/">Главная</a></li>
+                <li><a href="/search">Поиск</a></li>
+                <li><a href="/myprojects">Мои проекты</a></li>
+            </ul>
+        </nav>
+        
+        {{#if autorized}}
+            <div class="userBox">{{user.username}}</div>
+            <a href="/notifications">
+                <img id="notifications" alt="notifications" src="notification.png">
+            </a>
+            <a href="/logout">
+                <img id="logout" alt="log out" src="logout.png">
+            </a>
+        {{else}}
+            <a href="/register" class="moveBtn">Регистрация</a>
+            <a href="/auth" class="moveBtn">Войти</a>
+        {{/if}}
+    </header>
+    
+    <main>
+        <section>
+            <h2>Уведомления</h2>
+            <h3></h3>
+        </section>
+    </main>
+</body>
+</html>

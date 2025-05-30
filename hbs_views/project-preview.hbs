@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwayProject</title> 
+    <link rel="stylesheet" href="../../../newStyles.css" />
+    <link rel="icon" href="interrogation.png" type="image/x-icon">
+    <link rel="stylesheet" href="../../../newProjectView.css" />
+</head>
+<body>
+    <header>
+        <a href="/" class="logo-link">
+  <img id="logo" alt="RunwayProject" src="../../../logo.png">
+</a>
+<nav>
+  <ul>
+    <li><a href="/">• Главная</a></li>
+    <li><a href="/search">Поиск</a></li>
+    <li><a href="/myprojects">Мои проекты</a></li>
+  </ul>
+</nav>
+        {{#if autorized }} 
+        <div class="userBox">{{user.username}}</div>
+        <a href="/logout"><img id="logout" alt="log out" src="../../../logout.png"></a>
+        {{else}}
+        <a href="/register" class="moveBtn">Регистрация</a>
+        <a href="/auth" class="moveBtn">Войти</a>
+        {{/if }}
+    </header>
+    <div class="mainBlock">
+            <div class="listPages">
+                <button class="page current" id="idea" onclick="openWorkspace(this)">Идея</button>
+                <button class="page" id="work" onclick="openWorkspace(this)">Проработка</button>
+                <button class="page" id="realization" onclick="openWorkspace(this)">Реализация</button>
+                <button class="page" id="done" onclick="openWorkspace(this)">Готово</button>
+            </div>
+            {{#if isEdit }}
+              <button class="cardCreate" onclick="createCard()">Создать карточку</button>
+            {{/if}}
+            <div id="saveInfo">
+               {{{ html }}} 
+            </div>
+            {{#if isEdit }}
+            <button class="saveBtn" id="saveBtn" onclick="saveData('{{name}}')">Сохранить</button>
+            {{/if }}
+    </div>
+    <div class="commentBlock">
+      {{#if autorized}}
+      <div class="send">
+        <p>Оставте свой комментарий работе</p>
+        <textarea id="comment"></textarea>
+        <button classs="sendBtn" onclick="comment('{{name}}', {{isEdit}})">Отправить</button>
+      </div>
+      {{else}}
+      <p>Авторизуйтесь, чтобы добавить комментарий</p>
+      {{/if}}
+      <hr class="hr">
+      {{#each comments}}
+        {{#with this}}
+          <div class="comment">
+            <p class="sender"><b>Автор</b>: {{from}}</p>
+            <p class="context">{{ context }}</p>
+          </div>
+        {{/with}}
+      {{/each}}
+    </div>
+    <script src="../../../cards.js"></script>
+    {{#if isEdit}}
+      <script>
+        initEdit();
+      </script>
+    {{/if}}
+</body>
+</html>

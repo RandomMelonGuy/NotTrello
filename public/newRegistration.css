@@ -1,0 +1,178 @@
+/* Основные стили */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f0f8ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: #003366;
+    line-height: 1.6;
+}
+
+.mainBlock {
+    background-color: #e6f7ff;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(70, 130, 180, 0.15);
+    padding: 40px;
+    width: 100%;
+    max-width: 450px;
+    box-sizing: border-box;
+}
+
+h2 {
+    color: #1e3d6b;
+    margin-bottom: 30px;
+    font-size: 2em;
+    text-align: center;
+    font-weight: 600;
+}
+
+/* Стили для полей ввода */
+label {
+    display: block;
+    margin: 18px 0 8px;
+    color: #4682b4;
+    font-weight: 500;
+    font-size: 0.95em;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #a8d0e6;
+    border-radius: 8px;
+    font-size: 1em;
+    box-sizing: border-box;
+    background-color: #f8fcff;
+    transition: all 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #5f9ea0;
+    box-shadow: 0 0 0 3px rgba(95, 158, 160, 0.2);
+}
+
+input::placeholder {
+    color: #a8c0d0;
+    opacity: 1;
+}
+
+/* Стили для кнопки */
+.sendBtn {
+    background-color: #5f9ea0;
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 8px;
+    font-size: 1.1em;
+    cursor: pointer;
+    margin-top: 30px;
+    width: 100%;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}
+
+.sendBtn:hover {
+    background-color: #4682b4;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(70, 130, 180, 0.2);
+}
+
+.sendBtn:active {
+    transform: translateY(0);
+}
+
+/* Стили для индикатора сложности пароля */
+.password-strength {
+    margin: 8px 0;
+    height: 6px;
+    background-color: #e0e9f0;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s ease, background-color 0.3s ease;
+    border-radius: 3px;
+}
+
+/* Цвета для индикатора сложности (адаптированные под голубую палитру) */
+.strength-bar[style*="0%"], 
+.strength-bar[style*="20%"], 
+.strength-bar[style*="40%"] {
+    background-color: #e74c3c; /* Красный для слабого пароля */
+}
+
+.strength-bar[style*="60%"] {
+    background-color: #f39c12; /* Оранжевый для среднего пароля */
+}
+
+.strength-bar[style*="80%"], 
+.strength-bar[style*="100%"] {
+    background-color: #2ecc71; /* Зеленый для сильного пароля */
+}
+
+/* Стили для сообщений об ошибках */
+.error-message {
+    color: #e74c3c;
+    font-size: 0.85em;
+    margin-top: 6px;
+    display: none;
+}
+
+.success-message {
+    color: #2ecc71;
+    font-size: 0.95em;
+    margin-top: 20px;
+    text-align: center;
+    font-weight: 500;
+    display: none;
+}
+
+/* Стили для ссылки на вход */
+.login-link {
+    text-align: center;
+    margin-top: 25px;
+    color: #5f9ea0;
+    font-size: 0.95em;
+}
+
+.login-link a {
+    color: #4682b4;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s;
+}
+
+.login-link a:hover {
+    color: #1e3d6b;
+    text-decoration: underline;
+}
+
+/* Адаптивность */
+@media (max-width: 500px) {
+    .mainBlock {
+        padding: 30px 20px;
+        margin: 0 15px;
+    }
+    
+    h2 {
+        font-size: 1.7em;
+        margin-bottom: 25px;
+    }
+    
+    input {
+        padding: 12px;
+    }
+    
+    .sendBtn {
+        padding: 12px;
+    }
+}

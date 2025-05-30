@@ -1,0 +1,159 @@
+/* Основные стили панели навигации */
+header {
+    background-color:  #b8e2f2;
+    font-family: Arial, sans-serif;
+    padding: 15px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 10px rgba(30, 61, 107, 0.1);
+    position: relative;
+    z-index: 1000;
+}
+
+/* Стили для логотипа */
+.logo-link {
+    display: flex;
+    align-items: center;
+}
+
+#logo {
+    height: 40px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+#logo:hover {
+    transform: scale(1.05);
+}
+
+/* Основное меню навигации */
+nav ul {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    gap: 25px;
+}
+
+nav li {
+    position: relative;
+}
+
+nav a {
+    color: #4682b4;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 16px;
+    padding: 8px 0;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+nav a:hover {
+    color: #1e3d6b;
+}
+
+/* Специальный стиль для главной ссылки (с точкой) */
+nav li:first-child a {
+    color: #1e3d6b;
+    font-weight: 600;
+}
+
+nav li:first-child a:hover::before {
+    color: #5f9ea0;
+}
+
+/* Стили для авторизованного состояния */
+.userBox {
+    background-color: #5f9ea0;
+    color: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: 500;
+    margin-right: 15px;
+    transition: all 0.3s ease;
+}
+
+.userBox:hover {
+    background-color: #1e3d6b;
+    cursor: default;
+}
+
+#notifications, #logout {
+    height: 24px;
+    width: auto;
+    margin-left: 20px;
+    transition: transform 0.3s ease;
+}
+
+#notifications:hover, #logout:hover {
+    transform: scale(1.1);
+    opacity: 0.9;
+}
+
+/* Стили для неавторизованного состояния */
+.moveBtn {
+    background-color: #5f9ea0;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 15px;
+    transition: all 0.3s ease;
+    border: none;
+    font-size: 15px;
+}
+
+.moveBtn:hover {
+    background-color: #1e3d6b;
+    color: white;
+}
+
+.moveBtn:first-child {
+    margin-left: 0;
+}
+
+/* Индикатор активной страницы */
+nav a[href*="/search"].active,
+nav a[href*="/myprojects"].active {
+    color: #1e3d6b;
+    font-weight: 600;
+    position: relative;
+}
+
+nav a[href*="/search"].active::after,
+nav a[href*="/myprojects"].active::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #5f9ea0;
+}
+
+/* Адаптивность для мобильных устройств */
+@media (max-width: 768px) {
+    header {
+        flex-direction: column;
+        padding: 15px;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 10px;
+        align-items: center;
+        margin: 15px 0;
+    }
+
+    .userBox, .moveBtn {
+        margin: 10px 0;
+    }
+
+    #notifications, #logout {
+        margin: 10px;
+    }
+}

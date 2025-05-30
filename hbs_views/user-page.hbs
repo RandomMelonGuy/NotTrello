@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwayProject</title> 
+    <link rel="stylesheet" href="../newStyles.css" />
+    <link rel="stylesheet" href="../nav.css">
+    <link rel="icon" href="interrogation.png" type="image/x-icon">
+    <style>
+            body {
+        background-color: #f0f8ff;
+        font-family: 'Arial', sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #4682b4;
+        line-height: 1.6;
+    }
+
+    main {
+        max-width: 1200px;
+        margin: 20px auto;
+        padding: 20px;
+    }
+
+    /* Шапка профиля */
+    .user-top {
+        background-color: #1e3d6b;
+        padding: 30px;
+        border-radius: 10px 10px 0 0;
+        margin-bottom: 20px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .user {
+        font-size: 28px;
+        font-weight: bold;
+        margin: 0;
+        text-align: center;
+    }
+
+    /* Заголовок проектов */
+    h2 {
+        background-color: #5f9ea0;
+        padding: 15px 20px;
+        border-radius: 5px;
+        margin: 30px 0 20px;
+        font-size: 22px;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    /* Контейнер проектов */
+    .projects {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 20px;
+        margin-top: 20px;
+    }
+
+    /* Карточка проекта */
+    .project {
+        background-color: #e6f7ff;
+        border-radius: 8px;
+        padding: 20px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+        border-left: 4px solid #5f9ea0;
+    }
+
+    .project:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        background-color: #d8f0fa;
+    }
+
+    .name {
+        font-size: 18px;
+        font-weight: 600;
+        margin: 0;
+        color: #1e3d6b;
+    }
+
+    /* Дополнительные элементы */
+    .project::after {
+        content: "→";
+        color: #5f9ea0;
+        float: right;
+        font-weight: bold;
+        font-size: 20px;
+        transition: transform 0.3s;
+    }
+
+    .project:hover::after {
+        transform: translateX(5px);
+    }
+
+    /* Адаптивность */
+    @media (max-width: 768px) {
+        .projects {
+            grid-template-columns: 1fr;
+        }
+        
+        .user {
+            font-size: 24px;
+        }
+        
+        h2 {
+            font-size: 20px;
+            padding: 12px 15px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .user-top {
+            padding: 20px 15px;
+        }
+        
+        .project {
+            padding: 15px;
+        }
+        
+        .name {
+            font-size: 16px;
+        }
+    }
+    </style>
+</head>
+<body>
+    <header>
+<a href="/" class="logo-link">
+  <img id="logo" alt="RunwayProject" src="../logo.png">
+</a>
+<nav>
+  <ul>
+    <li><a href="/">• Главная</a></li>
+    <li><a href="/search">Поиск</a></li>
+    <li><a href="/myprojects">Мои проекты</a></li>
+  </ul>
+</nav>
+        {{#if autorized}}
+      <div class="userBox">{{user.username}}</div>
+      <a href="/logout"><img id="logout" alt="log out" src="../logout.png"></a>
+        {{else}}
+        <a href="/register" class="moveBtn">Регистрация</a>
+        <a href="/auth" class="moveBtn">Войти</a>
+        {{/if }}
+    </header>
+    <main>
+        <div class="user-top">
+            <p class="user" style="color: white;">{{ username }}</p>
+        </div>
+        <h2 style="color: white;">Проекты: </h2>
+        <div class="projects">
+            {{#each projects }}
+            <div class="project" onclick="openProject('{{this}}', '{{../username}}')">
+                <p class="name" id="name">Имя: {{ this }}</p>
+            </div>
+            {{/each}}
+        </div>
+    </main>
+    <script>
+        const openProject = (project, user) => {
+            window.location.href = `/projects/${user}/${project}`;
+        }
+    </script>
+</body>
+</html>

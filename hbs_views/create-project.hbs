@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RunwayProject</title> 
+    <link rel="stylesheet" href="../newProjectView.css" />
+    <link rel="stylesheet" href="../nav.css">
+    <link rel="stylesheet" href="../NewStyles.css" />
+    <link rel="icon" href="interrogation.png" type="image/x-icon">
+</head>
+<body>
+    <header>
+<a href="/" class="logo-link">
+  <img id="logo" alt="RunwayProject" src="../logo.png">
+</a>
+<nav>
+  <ul>
+    <li><a href="/">• Главная</a></li>
+    <li><a href="/search">Поиск</a></li>
+    <li><a href="/myprojects">Мои проекты</a></li>
+  </ul>
+</nav>
+      {{#if autorized}}
+      <div class="userBox">{{user.username}}</div>
+      <a href="/logout"><img id="logout" alt="log out" src="../logout.png"></a>
+      
+        {{else}}
+        <a href="/register" class="moveBtn">Регистрация</a>
+        <a href="/auth" class="moveBtn">Войти</a>
+        {{/if }}
+    </header>
+    {{#unless autorized}}
+        <p class="announcment">У Вас пока нет проектов. Авторизуйтесь.</p>
+        {{else}} <!--  Если что нужно дописать, то пиши внутри этих скобок -->
+        <dialog id="name">
+            <p>Введите имя проекта</p>
+            <input id="projectName" class="card-field">
+            <button onclick="this.parentNode.close()">Подтвердить</button>
+        </dialog>
+        <div class="mainBlock">
+            <div class="listPages">
+                <button class="page current" id="idea" onclick="openWorkspace(this)">Идея</button>
+                <button class="page" id="work" onclick="openWorkspace(this)">Проработка</button>
+                <button class="page" id="realization" onclick="openWorkspace(this)">Реализация</button>
+                <button class="page" id="done" onclick="openWorkspace(this)">Готово</button>
+            </div>
+            <button class="cardCreate" onclick="createCard()">Создать карточку</button>
+            <button class="cardCreate" onclick="createCard()">Редактировать</button>
+            <button class="cardCreate" onclick="createCard()">Удалить карточку</button>
+            <button class="cardCreate" onclick="createCard()">Комментарии</button>
+            <button class="cardCreate" onclick="createCard()">Фильтры:</button>
+            <div id="saveInfo">
+      
+                <div class="workSpace" id="ideaWorkSpace">
+                    
+                </div>
+                <div class="workSpace inactive" id="workWorkSpace">
+                    
+                </div>
+                <div class="workSpace inactive" id="realizationWorkSpace">
+                    
+                </div>
+                <div class="workSpace inactive" id="doneWorkSpace">
+                    
+                </div>
+          </div>
+         <button class="saveBtn" id="saveBtn" onclick="saveData()">Сохранить</button>
+        {{/unless}}
+</body>
+<script src="../cards.js"></script>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="nav.css" />
+    <link rel="stylesheet" href="newStyles.css" />
+    <link rel="icon" href="interrogation.png" type="image/x-icon">
+    <title>Поиск пользователей</title>
+    <style>
+        /* Общие стили */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            color: #4682b4;
+        }
+
+        /* Основной блок */
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: #e6f7ff;
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Заголовок */
+        h1 {
+            color: #1e3d6b;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+
+        /* Форма поиска */
+        .search-form {
+            display: flex;
+            margin-bottom: 25px;
+        }
+
+        .search-input {
+            flex-grow: 1;
+            padding: 12px 15px;
+            border: 1px solid #5f9ea0;
+            border-radius: 5px 0 0 5px;
+            font-size: 16px;
+            outline: none;
+        }
+
+        .search-button {
+            background-color: #5f9ea0;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .search-button:hover {
+            background-color: #4a8b8d;
+        }
+
+        /* Результаты поиска */
+        .results-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #b0e0e6;
+        }
+
+        .results-count {
+            font-weight: bold;
+            color: #1e3d6b;
+        }
+
+        .sort-options select {
+            padding: 8px;
+            border: 1px solid #5f9ea0;
+            border-radius: 5px;
+            background-color: white;
+            color: #4682b4;
+        }
+
+        /* Список пользователей */
+        .user-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .user-item {
+            display: flex;
+            align-items: center;
+            padding: 15px;
+            margin-bottom: 10px;
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: transform 0.2s;
+        }
+
+        .user-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .user-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: #b0e0e6;
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1e3d6b;
+            font-weight: bold;
+        }
+
+        .user-info {
+            flex-grow: 1;
+        }
+
+        .user-name {
+            font-weight: bold;
+            color: #1e3d6b;
+            margin-bottom: 5px;
+        }
+
+        .user-email {
+            font-size: 14px;
+            color: #4682b4;
+        }
+
+        .view-profile {
+            background-color: #5f9ea0;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: background-color 0.3s;
+        }
+
+        .view-profile:hover {
+            background-color: #4a8b8d;
+        }
+
+        /* Пагинация */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            margin-top: 25px;
+        }
+
+        .pagination button {
+            background-color: white;
+            border: 1px solid #5f9ea0;
+            color: #4682b4;
+            padding: 8px 12px;
+            margin: 0 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .pagination button:hover {
+            background-color: #5f9ea0;
+            color: white;
+        }
+
+        .pagination button.active {
+            background-color: #5f9ea0;
+            color: white;
+            font-weight: bold;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 600px) {
+            .search-form {
+                flex-direction: column;
+            }
+
+            .search-input {
+                border-radius: 5px;
+                margin-bottom: 10px;
+            }
+
+            .search-button {
+                border-radius: 5px;
+                width: 100%;
+            }
+
+            .user-item {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .user-avatar {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+
+            .view-profile {
+                margin-top: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+      <header>
+<a href="/" class="logo-link">
+  <img id="logo" alt="RunwayProject" src="logo.png">
+</a>
+<nav>
+  <ul>
+    <li><a href="/">Главная</a></li>
+    <li><a href="/search">• Поиск</a></li>
+    <li><a href="/myprojects">Мои проекты</a></li>
+  </ul>
+</nav>
+        {{#if autorized }} 
+        <div class="userBox">{{user.username}}</div>
+        <a href="/logout"><img id="logout" alt="log out" src="logout.png"></a>
+        {{else}}
+        <a href="/register" class="moveBtn">Регистрация</a>
+        <a href="/auth" class="moveBtn">Войти</a>
+        {{/if }}
+    </header>
+    <div class="container">
+        <h1>Поиск пользователей</h1>
+        
+        <div class="search-form">
+            <input type="text" class="search-input" placeholder="Введите имя пользователя" id="usernameInput">
+            <button class="search-button" onclick="search()">Поиск</button>
+        </div>
+        
+        <div class="results-header">
+            <div class="results-count" id="results-count"></div>
+            <!--<div class="sort-options">
+                <select>
+                    <option>Сортировать по имени</option>
+                    <option>Сортировать по дате</option>
+                    <option>Сортировать по рейтингу</option>
+                </select>
+            </div> -->
+        </div>
+        
+        <ul class="user-list" id="profileHolder">
+            
+        </ul>
+        
+        <!-- <div class="pagination">
+            <button>&laquo;</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>&raquo;</button>
+        </div> -->
+    </div>
+</body>
+<script>
+    const usernameInput = document.getElementById("usernameInput");
+    const profileHolder = document.getElementById("profileHolder");
+    const usersCounter = document.getElementById("results-count");
+    const getUserPrefab = (data) => {
+        const inic = data.username.split(" ").length >= 2 ? data.username.split(" ")[0][0]+data.username.split(" ")[1][0] : data.username.slice(0,2);
+        return `
+        <li class="user-item">
+            <div class="user-avatar">${inic}</div>
+            <div class="user-info">
+                <div class="user-name">${data.username}</div>
+                <div class="user-email">${data.email}</div>
+            </div>
+            <button class="view-profile" onclick="moveTo('${data.username}')">Профиль</button>
+         </li>`;
+    }
+    const search = async() => {
+        profileHolder.innerHTML = "";
+        const username = usernameInput.value;
+        const data = await fetch("/search", {method: "POST", body: JSON.stringify({nameVal: username})}).then(res=>res.json());
+        usersCounter.innerHTML = `Найдено ${data.length} пользователей`;
+        data.forEach(el=>{
+             profileHolder.innerHTML+=getUserPrefab(el);
+        });
+    }
+    const moveTo = (username) => {
+        const link = encodeURIComponent(username);
+        window.location.href = `/profile/${link}`;
+    }
+</script>
+</html>
